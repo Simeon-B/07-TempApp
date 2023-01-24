@@ -18,11 +18,30 @@
           <p>Salle : {{ capteur.salle.nom }}</p>
         </q-tab-panel>
 
-        <q-tab-panel name="mesures">
-          <q-table
+        <q-tab-panel name="mesures" style="padding: 0">
+          <!-- <q-table
             title="mesures"
             :rows="capteur.mesures"
-          />
+          /> -->
+          <table class="mesure">
+            <caption>Mesures</caption>
+            <thead>
+            <tr>
+              <th>ID</th><th>DATE</th><th>SEQUENCE</th><th>TEMPERATURE</th><th>HUMIDITÉ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="mesure in capteur.mesures"
+                :key="mesure.id"
+                :mesure="mesure">
+              <td>{{ mesure.id }}</td>
+              <td >{{ mesure.date }}</td>
+              <td>{{ mesure.sequence }}</td>
+              <td>{{ mesure.temperature }}</td>
+              <td>{{ mesure.humidite }}</td>
+            </tr>
+            </tbody>
+          </table>
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -47,8 +66,19 @@ export default {
 }
 </script>
 
-<style scoped>
-.capteur-card {
-  width: 350px;
-}
+<style scoped lang="sass">
+.capteur-card
+  width: 500px
+  min-height: 400px
+.mesure
+  overflow: scroll
+  td, th
+    white-space: nowrap
+    alignment: center !important
+    margin: 3px 10px 3px 10px
+    padding: 3px 10px 3px 10px
+  caption
+    margin: 5px 5px 10px 5px
+    font-size: 2em
+    alignment: left
 </style>

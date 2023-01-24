@@ -159,5 +159,6 @@ export default defineComponent({
 /* Lien actif du menu latéral */
 .q-drawer
   .q-router-link--exact-active
-    background-color: #31CCEC !important
+    color: #000000 !important
+    background-color: #61cbe1 !important
 </style>

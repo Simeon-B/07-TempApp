@@ -69,10 +69,10 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
-  setCapteurs (state, capteurs) {
+  SET_CAPTEURS (state, capteurs) {
     state.capteurs = capteurs
   },
-  setCapteursChargees (state, valeur) {
+  SET_CAPTEURS_CHARGES (state, valeur) {
     state.capterusChargees = valeur
   }
 }
@@ -83,18 +83,18 @@ Elles peuvent être asynchrones !
  */
 const actions = {
   getCapteursApi ({ commit, rootState }) {
-    commit('setCapteursChargees', false)
+    commit('SET_CAPTEURS_CHARGES', false)
     const config = {
       headers: { Authorization: 'Bearer ' + rootState.auth.token }
     }
     api.get('/capteurs', config)
       .then(function (response) {
-        commit('setCapteurs', response.data)
-        commit('setCapteursChargees', true)
+        commit('SET_CAPTEURS', response.data)
+        commit('SET_CAPTEURS_CHARGES', true)
       })
       .catch(function (error) {
         afficherMessageErreur(
-          'Erreur lors de la récupération des tâches !'
+          'Erreur lors de la récupération des capteurs !'
         )
         throw error
       })
