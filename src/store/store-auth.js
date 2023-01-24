@@ -42,17 +42,18 @@ const actions = {
       })
   },
   connecterUtilisateur ({ commit, dispatch }, payload) {
+    const vue = this
     Loading.show()
     api.post('/login', payload)
       .then(function (response) {
         dispatch('setUser', response.data)
-        this.$router.push('/home')
+        vue.$router.push('/home')
       })
       .catch(function (error) {
         Loading.hide()
         afficherMessageErreur(
           'Connexion impossible !',
-          Object.values(error.response.data)
+          Object.values(error.response)
         )
         throw error
       })
